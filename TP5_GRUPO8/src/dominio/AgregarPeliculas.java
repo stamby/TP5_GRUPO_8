@@ -2,6 +2,8 @@ package dominio;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -38,8 +40,14 @@ public class AgregarPeliculas extends JPanel {
 		txtNombre.setColumns(10);
 		
 		JComboBox cboxGenero = new JComboBox();
-		cboxGenero.setBounds(197, 179, 31, 22);
+		cboxGenero.setBounds(197, 179, 116, 22);
 		add(cboxGenero);
+		Categoria cat= new Categoria(); 
+		for (Categoria item : cat.Obtener()) { 
+			cboxGenero.addItem(item.getNombre());
+			
+		}
+		
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(131, 233, 97, 25);

@@ -3,12 +3,15 @@ package dominio;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Programa extends JFrame {
 
@@ -27,6 +30,16 @@ public class Programa extends JFrame {
 		menuBar.add(mnNewMenuPeliculas);
 		
 		JMenuItem mntmNewMenuItemAgregar = new JMenuItem("Agregar");
+		mntmNewMenuItemAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				AgregarPeliculas panelPelicula = new AgregarPeliculas(); 
+				contentPane.add(panelPelicula, BorderLayout.CENTER);
+				panelPelicula.setVisible(true);
+				revalidate();
+                repaint();
+			}
+		});
 		mnNewMenuPeliculas.add(mntmNewMenuItemAgregar);
 		
 		JMenuItem mntmNewMenuItemListar = new JMenuItem("Listar");
