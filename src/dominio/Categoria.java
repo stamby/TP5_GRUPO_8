@@ -28,10 +28,12 @@ public ArrayList<Categoria> Obtener(){
 	lista.add(cat2);
 	lista.add(cat3);
 	lista.add(cat4);
-	return lista;
-	
-	
-	
+	return lista;	
+}
+
+@Override
+public String toString() {
+	return Nombre;
 }
 
 }

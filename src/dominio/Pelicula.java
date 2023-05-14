@@ -25,6 +25,10 @@ public class Pelicula {
 	private String Nombre; 
 	private Categoria cat; 
 	
+	@Override
+	public String toString() {
+		return Nombre + "; " + cat.toString();
+	}
 	
 	public String muestraID () { 
 		Id++;

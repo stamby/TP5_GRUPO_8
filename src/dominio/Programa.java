@@ -7,6 +7,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dominio.Pnl_Listar;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -16,12 +19,14 @@ import java.awt.event.ActionEvent;
 public class Programa extends JFrame {
 
 	private JPanel contentPane;
-	public static DefaultListModel<Pelicula> listModel;
+	public static DefaultListModel<Pelicula> dLModel;
 
 	public Programa() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setTitle("Programa");
+		
+		dLModel = new DefaultListModel<Pelicula>();
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -32,8 +37,9 @@ public class Programa extends JFrame {
 		JMenuItem mntmNewMenuItemAgregar = new JMenuItem("Agregar");
 		mntmNewMenuItemAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				contentPane.removeAll();
 				
-				AgregarPeliculas panelPelicula = new AgregarPeliculas(); 
+				AgregarPeliculas panelPelicula = new AgregarPeliculas(dLModel); 
 				contentPane.add(panelPelicula, BorderLayout.CENTER);
 				panelPelicula.setVisible(true);
 				revalidate();
@@ -43,7 +49,24 @@ public class Programa extends JFrame {
 		mnNewMenuPeliculas.add(mntmNewMenuItemAgregar);
 		
 		JMenuItem mntmNewMenuItemListar = new JMenuItem("Listar");
+		mntmNewMenuItemListar.addActionListener(new ActionListener() {
+
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				contentPane.removeAll();
+				
+				Pnl_Listar panel = new Pnl_Listar(dLModel);
+				contentPane.add(panel,BorderLayout.CENTER);
+				panel.setVisible(true);
+				contentPane.repaint();
+				contentPane.revalidate();
+				
+			}
+		});
+		
 		mnNewMenuPeliculas.add(mntmNewMenuItemListar);
+		
 		
 		
 		// cambiar por funciones de menu
@@ -55,12 +78,6 @@ public class Programa extends JFrame {
 		
 
 	}
-	
-	
-	public static DefaultListModel<Pelicula> getMiLista() {
-		listModel = new DefaultListModel<Pelicula>();
-        return listModel;
-    }
 
 	public void cambiarVisibilidad(boolean estado) {
 		setVisible(true);

@@ -15,10 +15,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AgregarPeliculas extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	private JTextField txtNombre;
-	private Pelicula peliculaAgregada = new Pelicula(); 
+	private Pelicula peliculaAgregada = new Pelicula();
+	private DefaultListModel<Pelicula> dLModel;
 
-	public AgregarPeliculas() {
+	public AgregarPeliculas(DefaultListModel<Pelicula> dLModel) {
+		this.dLModel = dLModel;
 		setLayout(null);
 		
 		JLabel lblID = new JLabel("ID");
@@ -47,7 +51,7 @@ public class AgregarPeliculas extends JPanel {
 		add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		JComboBox cboxGenero = new JComboBox();
+		JComboBox<String> cboxGenero = new JComboBox<String>();
 		cboxGenero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Categoria cat = new Categoria(); 
@@ -67,11 +71,13 @@ public class AgregarPeliculas extends JPanel {
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (txtNombre.getText() != "") { 
 					peliculaAgregada.setNombre(txtNombre.getText());
-					DefaultListModel<Pelicula> lista = Programa.getMiLista();
-					lista.addElement(peliculaAgregada);
+					
+					dLModel.addElement(peliculaAgregada);
+					
 					txtNombre.setText("");
 					
 					Pelicula peli = new Pelicula(); 
