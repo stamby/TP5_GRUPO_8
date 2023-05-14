@@ -19,7 +19,17 @@ public class Pelicula {
 	public void setCat(Categoria cat) {
 		this.cat = cat;
 	}
-	private static int Id; 
+	
+	
+	private static int Id=0; 
 	private String Nombre; 
 	private Categoria cat; 
+	
+	
+	public String muestraID () { 
+		Id++;
+		String idString = Integer.toString(Id); 
+		
+		return idString;
+	}
 }

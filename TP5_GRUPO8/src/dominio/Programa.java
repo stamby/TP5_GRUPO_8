@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 public class Programa extends JFrame {
 
 	private JPanel contentPane;
-	private static DefaultListModel<Pelicula> listModel;
+	public static DefaultListModel<Pelicula> listModel;
 
 	public Programa() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,8 +52,16 @@ public class Programa extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		
+
 	}
 	
+	
+	public static DefaultListModel<Pelicula> getMiLista() {
+		listModel = new DefaultListModel<Pelicula>();
+        return listModel;
+    }
+
 	public void cambiarVisibilidad(boolean estado) {
 		setVisible(true);
 	}
